@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>at.mic.camunda.workshop</groupId>
+    <artifactId>camunda-workshop</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>camunda-workshop-liberty</module>
+        <module>camunda-liberty-infrastructure</module>
+        <module>camunda-workshop-bpm</module>
+        <module>camunda-workshop-backend</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>camunda</id>
+            <url>https://app.camunda.com/nexus/content/groups/public</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>camunda-ee</id>
+            <url>https://app.camunda.com/nexus/content/repositories/camunda-bpm-ee</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>jboss</id>
+            <url>http://repository.jboss.org/nexus/content/groups/public</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.camunda.bpm</groupId>
+                <artifactId>camunda-bom</artifactId>
+                <version>7.10.2-ee</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.camunda.bpm.dmn</groupId>
+                <artifactId>camunda-engine-dmn-bom</artifactId>
+                <version>7.10.2-ee</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+
+
+
+    <properties>
+        <app.name>MicTransformExport</app.name>
+        <package.file>${project.build.directory}/${app.name}.zip</package.file>
+        <packaging.type>usr</packaging.type>
+        <liberty.version>[18.0.0.3,)</liberty.version>
+        <liberty-maven-plugin.version>2.6.1</liberty-maven-plugin.version>
+        <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+        <eclipselink.version>2.7.3</eclipselink.version>
+        <mockito-junit-jupiter.version>2.19.1</mockito-junit-jupiter.version>
+        <cdi-api.version>1.2</cdi-api.version>
+        <javax.inject.version>1</javax.inject.version>
+        <microprofile.version>2.1</microprofile.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+
+</project>

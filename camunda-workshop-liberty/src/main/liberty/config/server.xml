@@ -1,0 +1,79 @@
+<server description="Sample Servlet server">
+    <featureManager>
+        <feature>cdi-1.2</feature>
+        <!--<feature>beanValidation-1.1</feature>-->
+        <feature>jndi-1.0</feature>
+        <feature>servlet-3.1</feature>
+        <feature>jaxrs-2.0</feature>
+        <feature>jdbc-4.1</feature>
+        <feature>concurrent-1.0</feature>
+        <feature>jpaContainer-2.1</feature>
+        <feature>mpConfig-1.3</feature>
+    </featureManager>
+
+    <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint" host="*"/>
+    <httpOptions maxKeepAliveRequests="-1"/>
+    <logging consoleLogLevel="INFO" traceFormat="ADVANCED" messageSource="message,trace,accessLog,ffdc,audit"/>
+
+    <webApplication id="camunda-workshop-liberty" location="camunda-workshop-liberty.war" contextRoot="/">
+        <classloader commonLibraryRef="H2Lib,Camunda"/>
+    </webApplication>
+    <webApplication id="engine-rest" location="${libdir}/camunda/camunda-engine-rest.war" contextRoot="/engine-rest">
+        <classloader commonLibraryRef="H2Lib,Camunda"/>
+    </webApplication>
+    <webApplication id="cockpit" location="${libdir}/camunda/camunda-webapp-ee-was9.war" contextRoot="/cockpit">
+        <classloader commonLibraryRef="H2Lib,Camunda"/>
+    </webApplication>
+    <applicationManager autoExpand="true" useJandex="true"/>
+
+
+    <connectionManager id="ConnectionManagerCamunda" maxPoolSize="60" connectionTimeout="180" agedTimeout="200s" minPoolSize="5"
+                       numConnectionsPerThreadLocal="1" purgePolicy="FailingConnectionOnly"/>
+
+
+
+
+    <cdi12 enableImplicitBeanArchives="false"/>
+
+    <!--<dataSource id="CamundaDataSource" jndiName="jdbc/ProcessEngine" connectionManagerRef="ConnectionManagerCamunda"-->
+                <!--type="javax.sql.DataSource" enableConnectionCasting="false" statementCacheSize="60"-->
+                <!--isolationLevel="TRANSACTION_READ_COMMITTED" transactional="true">-->
+        <!--<jdbcDriver libraryRef="H2Lib" javax.sql.DataSource="org.h2.jdbcx.JdbcDataSource"/>-->
+        <!--<properties.oracle URL="jdbc:h2:./camunda-db;DB_CLOSE_DELAY=-1;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE" USER="sa" PASSWORD="sa"/>-->
+    <!--</dataSource>-->
+
+    <dataSource id="CamundaDataSource" jndiName="jdbc/ProcessEngine">
+        <!-- Define the DataSource class names on the <jdbcDriver> element -->
+        <jdbcDriver
+                javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource"
+                javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
+                javax.sql.DataSource="org.h2.jdbcx.JdbcDataSource"
+                libraryRef="H2Lib"/>
+        <!-- set the connection URL on the <properties> element.
+             this corresponds to the setURL() method on H2's JdbcDataSource class.
+             you may also list any properties here that have a corresponding setXXX method on H2's JdbcDataSource class -->
+        <properties URL="jdbc:h2:./camunda-db;DB_CLOSE_DELAY=-1;MVCC=TRUE;DB_CLOSE_ON_EXIT=FALSE" USER="sa" PASSWORD="sa"/>
+    </dataSource>
+
+
+    <managedExecutorService jndiName="wm/camunda-bpm-workmanager">
+        <concurrencyPolicy max="40"/>
+    </managedExecutorService>
+
+
+    <transaction
+            recoverOnStartup="true"
+            waitForRecovery="true"
+    />
+
+    <library id="H2Lib">
+        <fileset dir="${libdir}/h2/"  includes="*.jar"/>
+    </library>
+
+    <library id="Camunda">
+        <fileset dir="${libdir}/camundadownload/lib" includes="*.jar"/>
+        <fileset dir="${libdir}/resteasy" includes="*.jar"/>
+    </library>
+
+
+</server>
