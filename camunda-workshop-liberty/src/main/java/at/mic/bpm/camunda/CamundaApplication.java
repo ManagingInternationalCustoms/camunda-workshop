@@ -4,7 +4,7 @@
  ************************************************************/
 package at.mic.bpm.camunda;
 
-import lombok.extern.java.Log;
+//import lombok.extern.java.Log;
 import org.camunda.bpm.application.AbstractProcessApplication;
 import org.camunda.bpm.application.ProcessApplication;
 import org.camunda.bpm.application.ProcessApplicationReference;
@@ -20,7 +20,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 @ProcessApplication("MIC Camunda Application")
-@Log
 public class CamundaApplication extends AbstractProcessApplication {
 
     private ProcessApplicationReferenceImpl reference;
@@ -56,7 +55,7 @@ public class CamundaApplication extends AbstractProcessApplication {
     }
 
     public void postConstruct(@Observes @Initialized(ApplicationScoped.class) Object event) {
-        log.info("Start Camunda with CDI");
+//        log.info("Start Camunda with CDI");
         deploy();
     }
 

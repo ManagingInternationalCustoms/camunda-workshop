@@ -11,7 +11,6 @@
     <modules>
         <module>camunda-workshop-liberty</module>
         <module>camunda-liberty-infrastructure</module>
-        <module>camunda-workshop-bpm</module>
         <module>camunda-workshop-backend</module>
         <module>camunda-workshop-liberty2</module>
     </modules>
