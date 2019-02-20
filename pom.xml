@@ -34,15 +34,6 @@
                 <updatePolicy>always</updatePolicy>
             </releases>
         </repository>
-        <repository>
-            <id>jboss</id>
-            <url>http://repository.jboss.org/nexus/content/groups/public</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </releases>
-        </repository>
     </repositories>
 
     <dependencyManagement>
