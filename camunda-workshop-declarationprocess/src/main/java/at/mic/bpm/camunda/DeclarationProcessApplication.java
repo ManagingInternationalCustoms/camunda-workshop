@@ -20,7 +20,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 @ProcessApplication("MIC Camunda Application")
-public class CamundaApplication extends AbstractProcessApplication {
+public class DeclarationProcessApplication extends AbstractProcessApplication {
 
     private ProcessApplicationReferenceImpl reference;
     private static String MODULE_NAME_PATH = "java:module/ModuleName";

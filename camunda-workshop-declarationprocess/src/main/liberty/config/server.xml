@@ -15,7 +15,7 @@
     <httpOptions maxKeepAliveRequests="-1"/>
     <logging consoleLogLevel="INFO" traceFormat="ADVANCED" messageSource="message,trace,accessLog,ffdc,audit"/>
 
-    <webApplication id="camunda-workshop-liberty2" location="camunda-workshop-liberty2.war" contextRoot="/">
+    <webApplication id="camunda-workshop-declarationprocess" location="camunda-workshop-declarationprocess.war" contextRoot="/">
         <classloader commonLibraryRef="H2Lib,Camunda"/>
     </webApplication>
     <webApplication id="engine-rest" location="${libdir}/camunda/camunda-engine-rest.war" contextRoot="/engine-rest">

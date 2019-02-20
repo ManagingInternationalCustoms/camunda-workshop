@@ -9,10 +9,10 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>camunda-workshop-liberty</module>
+        <module>camunda-workshop-exportprocess</module>
         <module>camunda-liberty-infrastructure</module>
         <module>camunda-workshop-backend</module>
-        <module>camunda-workshop-liberty2</module>
+        <module>camunda-workshop-declarationprocess</module>
     </modules>
 
     <repositories>

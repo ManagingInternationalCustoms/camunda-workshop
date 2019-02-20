@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <!--<listener>-->
-    <!--<listener-class>at.mic.process.camunda.CamundaApplication</listener-class>-->
+    <!--<listener-class>at.mic.process.camunda.ExportProcessApplication</listener-class>-->
     <!--</listener>-->
     <resource-ref>
         <res-ref-name>jdbc/oracle</res-ref-name>

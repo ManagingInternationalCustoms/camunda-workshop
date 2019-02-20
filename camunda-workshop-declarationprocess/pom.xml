@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>camunda-workshop-liberty2</artifactId>
+    <artifactId>camunda-workshop-declarationprocess</artifactId>
 
     <packaging>war</packaging>
 
@@ -21,8 +21,24 @@
     <dependencies>
         <dependency>
             <groupId>at.mic.camunda.workshop</groupId>
+            <artifactId>camunda-workshop-backend</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>at.mic.camunda.workshop</groupId>
             <artifactId>camunda-liberty-infrastructure</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.camunda.bpm</groupId>
+            <artifactId>camunda-engine</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
