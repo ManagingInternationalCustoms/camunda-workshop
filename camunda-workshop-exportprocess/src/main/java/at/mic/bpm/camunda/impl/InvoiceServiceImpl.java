@@ -1,6 +1,6 @@
 package at.mic.bpm.camunda.impl;
 
-import at.mic.bpm.camunda.service.InvoiceService;
+import at.mic.cust.export.create.InvoiceService;
 
 import javax.inject.Named;
 import java.util.ArrayList;
