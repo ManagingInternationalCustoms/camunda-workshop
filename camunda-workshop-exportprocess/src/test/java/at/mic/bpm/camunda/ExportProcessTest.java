@@ -1,7 +1,7 @@
 package at.mic.bpm.camunda;
 
 import at.mic.bpm.camunda.delegate.ExportLogicDelegate;
-import at.mic.bpm.camunda.service.InvoiceService;
+import at.mic.cust.export.create.InvoiceService;
 import org.camunda.bpm.engine.externaltask.LockedExternalTask;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.task.Task;
