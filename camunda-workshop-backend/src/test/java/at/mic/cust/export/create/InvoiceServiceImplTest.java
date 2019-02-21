@@ -32,7 +32,7 @@ public class InvoiceServiceImplTest {
         properties.put(TRANSACTION_TYPE,
                 PersistenceUnitTransactionType.RESOURCE_LOCAL.name());
 
-        properties.put(NON_JTA_DATASOURCE, "");
+        properties.put(JTA_DATASOURCE, "");
 
         // Configure the internal EclipseLink connection pool
 
