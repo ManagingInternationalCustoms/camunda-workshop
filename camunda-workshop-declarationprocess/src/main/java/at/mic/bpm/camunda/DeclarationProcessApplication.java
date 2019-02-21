@@ -7,10 +7,12 @@ package at.mic.bpm.camunda;
 //import lombok.extern.java.Log;
 import org.camunda.bpm.application.AbstractProcessApplication;
 import org.camunda.bpm.application.ProcessApplication;
+import org.camunda.bpm.application.ProcessApplicationExecutionException;
 import org.camunda.bpm.application.ProcessApplicationReference;
 import org.camunda.bpm.application.impl.ProcessApplicationLogger;
 import org.camunda.bpm.application.impl.ProcessApplicationReferenceImpl;
 import org.camunda.bpm.engine.impl.ProcessEngineLogger;
+import org.camunda.bpm.engine.impl.util.ClassLoaderUtil;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Destroyed;
@@ -18,6 +20,7 @@ import javax.enterprise.context.Initialized;
 import javax.enterprise.event.Observes;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import java.util.concurrent.Callable;
 
 @ProcessApplication("MIC Camunda Application")
 public class DeclarationProcessApplication extends AbstractProcessApplication {
@@ -43,6 +46,24 @@ public class DeclarationProcessApplication extends AbstractProcessApplication {
         } catch (NamingException e) {
             LOG.exceptionWhileInitializingProcessengine(e);
             throw new RuntimeException(e);
+        }
+    }
+
+    public <T> T execute(Callable<T> callable) throws ProcessApplicationExecutionException {
+        ClassLoader originalClassloader = ClassLoaderUtil.getContextClassloader();
+        ClassLoader processApplicationClassloader = getProcessApplicationClassloader();
+
+        try {
+            if (originalClassloader != processApplicationClassloader) {
+                ClassLoaderUtil.setContextClassloader(processApplicationClassloader);
+            }
+
+            return callable.call();
+
+        } catch (Exception e) {
+            throw LOG.processApplicationExecutionException(e);
+        } finally {
+            ClassLoaderUtil.setContextClassloader(originalClassloader);
         }
     }
 

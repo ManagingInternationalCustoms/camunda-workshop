@@ -5,7 +5,7 @@
 package at.mic.bpm.camunda.delegate;
 
 import at.mic.bpm.camunda.service.ExportProcessVariables;
-import at.mic.bpm.camunda.service.ExportService;
+import at.mic.cust.export.create.ExportService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
