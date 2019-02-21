@@ -148,6 +148,20 @@
       <bpmn:outgoing>SequenceFlow_1uzmrmx</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:startEvent id="StartEvent_10yb0rj" name="Ware soll exportiert werden" camunda:asyncBefore="true">
+      <bpmn:extensionElements>
+        <camunda:formData businessKey="businessKey">
+          <camunda:formField id="businessKey" label="Business Key" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="invoiceId" label="Invoice ID" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_0t7ilzz</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_0daxpp4" />
     </bpmn:startEvent>

@@ -19,13 +19,10 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import static com.sun.tools.doclint.Entity.times;
 import static org.camunda.bpm.engine.test.assertions.ProcessEngineAssertions.*;
 import static org.camunda.bpm.engine.test.assertions.ProcessEngineTests.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 

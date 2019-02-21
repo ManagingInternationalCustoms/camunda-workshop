@@ -4,13 +4,9 @@ import javax.inject.Named;
 
 @Named
 public class HealthChecker {
-    boolean emergency;
 
     public boolean isEmergency() {
-        return emergency;
+        return Math.random() > 0.5;
     }
 
-    public void setEmergency(boolean emergency) {
-        this.emergency = emergency;
-    }
 }
