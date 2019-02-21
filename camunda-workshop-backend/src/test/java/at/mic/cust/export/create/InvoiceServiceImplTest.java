@@ -85,11 +85,19 @@ public class InvoiceServiceImplTest {
     }
 
     @Test
-    public void findPositionIds() {
+    public void findExistingPositionIds() {
         InvoiceService service = new InvoiceServiceImpl(em);
         List<String> lineIds = service.findPositionIds(String.valueOf(invoiceSid));
-        assertTrue(lineIds != null && !((List) lineIds).isEmpty());
+        assertTrue(lineIds != null && lineIds.size() == 2);
     }
+
+    @Test
+    public void findNewPositionIds() {
+        InvoiceService service = new InvoiceServiceImpl(em);
+        List<String> lineIds = service.findPositionIds(String.valueOf(-999));
+        assertTrue(lineIds != null && lineIds.size() == 1);
+    }
+
 
 
 }
