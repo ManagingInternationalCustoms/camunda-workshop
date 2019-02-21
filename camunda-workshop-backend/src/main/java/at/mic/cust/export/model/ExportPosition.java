@@ -10,7 +10,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "MIC_AUSPOS")
-@SequenceGenerator(name = "ExportPositionSeq", sequenceName = "MIC_AUSPOS_SEQ")
+@SequenceGenerator(name = "ExportPositionSeq", sequenceName = "MIC_AUSPOS_SEQ", allocationSize = 1)
 public class ExportPosition {
 
     @Id
@@ -31,31 +31,31 @@ public class ExportPosition {
     private String previousDocumentType;
 
     @Basic
-    @Column(name = "afpempnr", nullable = false, length = 105)
+    @Column(name = "afpempnr", length = 105)
     private String consigneeNr;
 
     @Basic
-    @Column(name = "AFPEMPNAME", nullable = false, length = 105)
+    @Column(name = "AFPEMPNAME", length = 105)
     private String consigneeName;
 
     @Basic
-    @Column(name = "AFPEMPSTR", nullable = false, length = 80)
+    @Column(name = "AFPEMPSTR", length = 80)
     private String consigneeStreet;
 
     @Basic
-    @Column(name = "AFPEMPPLZ", nullable = false, length = 10)
+    @Column(name = "AFPEMPPLZ", length = 10)
     private String consigneeZip;
 
     @Basic
-    @Column(name = "AFPEMPORT", nullable = false, length = 80)
+    @Column(name = "AFPEMPORT", length = 80)
     private String consigneeCity;
 
     @Basic
-    @Column(name = "AFPEMPLD", nullable = false, length = 3)
+    @Column(name = "AFPEMPLD", length = 3)
     private String consigneeCountry;
 
     @Basic
-    @Column(name = "AFPEMPTIN", nullable = false, length = 18)
+    @Column(name = "AFPEMPTIN", length = 18)
     private String consigneeTin;
 
     @Basic
@@ -63,27 +63,27 @@ public class ExportPosition {
     private String consigneeEori;
 
     @Basic
-    @Column(name = "AFPZUSCD1", nullable = false, length = 4)
+    @Column(name = "AFPZUSCD1", length = 4)
     private String additionalCode1;
 
     @Basic
-    @Column(name = "AFPZUSCD2", nullable = false, length = 4)
+    @Column(name = "AFPZUSCD2", length = 4)
     private String additionalCode2;
 
     @Basic
-    @Column(name = "AFPZUSCD3", nullable = false, length = 4)
+    @Column(name = "AFPZUSCD3", length = 4)
     private String additionalCode3;
 
     @Basic
-    @Column(name = "AFPNATCD1", nullable = false, length = 4)
+    @Column(name = "AFPNATCD1", length = 4)
     private String additionalNationalCode1;
 
     @Basic
-    @Column(name = "AFPNATCD2", nullable = false, length = 4)
+    @Column(name = "AFPNATCD2", length = 4)
     private String additionalNationalCode2;
 
     @Basic
-    @Column(name = "AFPNATCD3", nullable = false, length = 4)
+    @Column(name = "AFPNATCD3", length = 4)
     private String additionalNationalCode3;
 
     @Basic
@@ -91,7 +91,7 @@ public class ExportPosition {
     private BigDecimal statisticalValue;
 
     @Basic
-    @Column(name = "AFPSUPUNIT", nullable = false, length = 4)
+    @Column(name = "AFPSUPUNIT", length = 4)
     private String unitOfMeasure;
 
     @Basic
@@ -99,31 +99,31 @@ public class ExportPosition {
     private BigDecimal unitOfMeasureQuantity;
 
     @Basic
-    @Column(name = "AFPGEFAHRNR", nullable = false, length = 4)
+    @Column(name = "AFPGEFAHRNR", length = 4)
     private String dangerousGoodsCode;
 
     @Basic
-    @Column(name = "AFPBEFKOSTEN", nullable = false, length = 4)
+    @Column(name = "AFPBEFKOSTEN", length = 4)
     private String transportCharges;
 
     @Basic
-    @Column(name = "AFPSDGKENNNR", nullable = false, length = 4)
+    @Column(name = "AFPSDGKENNNR", length = 4)
     private String commercialReferenceNumber;
 
     @Basic
-    @Column(name = "AFPREGION", nullable = false, length = 50)
+    @Column(name = "AFPREGION", length = 50)
     private String departureRegion;
 
     @Basic
-    @Column(name = "AFPEUCODE", nullable = false, length = 3)
+    @Column(name = "AFPEUCODE", length = 3)
     private String nationalProcedure;
 
     @Basic
-    @Column(name = "AFPFAKTPOS", nullable = false, length = 4)
+    @Column(name = "AFPFAKTPOS", length = 4)
     private Long invoiceLineNumber;
 
     @Basic
-    @Column(name = "AFPBELPOS", nullable = false, length = 5)
+    @Column(name = "AFPBELPOS", length = 5)
     private Long shipmentLineNumber;
 
     @Basic
@@ -631,10 +631,8 @@ public class ExportPosition {
     private long lockVersion;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "AFPAFKSID", nullable = false)
-    @Column(length = 10, nullable = false)
+    @JoinColumn(name = "AFPAFKSID")
     private ExportInvoice invoice;
-
 
     @Basic
     @Column(name = "AFPMESSSSTATUS", length = 2)
@@ -656,10 +654,6 @@ public class ExportPosition {
     @Basic
     @Column(name = "AFPEMPBRANCHNO", length = 4)
     private String receiverBranchNo;
-
-    @Basic
-    @Column(name = "AFPEMPNAME", length = 120)
-    private String receiverName;
 
     @Basic
     @Column(name = "AFPEUSERTIN", length = 17)
@@ -1889,20 +1883,6 @@ public class ExportPosition {
      */
     public void setReceiverBranchNo(String receiverBranchNo) {
         this.receiverBranchNo = receiverBranchNo;
-    }
-
-    /**
-     * @return the receiverName
-     */
-    public String getReceiverName() {
-        return this.receiverName;
-    }
-
-    /**
-     * @param receiverName the receiverName to set
-     */
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
     }
 
     /**

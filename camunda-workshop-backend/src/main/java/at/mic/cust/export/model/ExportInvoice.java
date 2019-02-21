@@ -12,11 +12,12 @@ import java.util.List;
  */
 @Entity
 @Table(name = "MIC_AUSKOP")
-@SequenceGenerator(name = "ExportInvoiceSeq", sequenceName = "MIC_AUSKOP_SEQ")
+@SequenceGenerator(name = "ExportInvoiceSeq", sequenceName = "MIC_AUSKOP_SEQ", allocationSize = 1)
 public class ExportInvoice {
 
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ExportPosition> positions = new ArrayList<ExportPosition>();
+
     @Id
     @Column(name = "AFKSID", nullable = false, length = 10)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ExportInvoiceSeq")
@@ -142,15 +143,6 @@ public class ExportInvoice {
     @Basic
     @Column(name = "AFKHALD", length = 3)
     private String countryOfTrade;
-    @Basic
-    @Column(name = "AFKALICODE", length = 3)
-    private String incoTermCode;
-    @Basic
-    @Column(name = "AFKALIBEZ", length = 35)
-    private String incoTermDescription;
-    @Basic
-    @Column(name = "AFKALICOD2", length = 1)
-    private String incoTermAddCode;
     @Basic
     @Column(name = "AFKALIFORMULA", length = 4)
     private String incoTermFormula;
@@ -433,13 +425,10 @@ public class ExportInvoice {
     @Column(name = "AFKEUSERTIN", length = 17)
     private String addrTin;
     @Basic
-    @Column(name = "AFKKNDEORI", length = 17)
-    private String userEori;
-    @Basic
     @Column(name = "AFKEMPBRANCHNO", length = 4)
     private String receiverBranchNo;
     @Basic
-    @Column(name = "AFKEUSERNM1", nullable = false, length = 120)
+    @Column(name = "AFKEUSERNM1", length = 120)
     private String userAddrName1;
     @Basic
     @Column(name = "AFKEUSERSTREET", length = 70)
@@ -797,30 +786,6 @@ public class ExportInvoice {
 
     public void setCountryOfTrade(String countryOfTrade) {
         this.countryOfTrade = countryOfTrade;
-    }
-
-    public String getIncoTermCode() {
-        return this.incoTermCode;
-    }
-
-    public void setIncoTermCode(String incoTermCode) {
-        this.incoTermCode = incoTermCode;
-    }
-
-    public String getIncoTermDescription() {
-        return this.incoTermDescription;
-    }
-
-    public void setIncoTermDescription(String incoTermDescription) {
-        this.incoTermDescription = incoTermDescription;
-    }
-
-    public String getIncoTermAddCode() {
-        return this.incoTermAddCode;
-    }
-
-    public void setIncoTermAddCode(String incoTermAddCode) {
-        this.incoTermAddCode = incoTermAddCode;
     }
 
     public String getIncoTermFormula() {
@@ -1663,14 +1628,6 @@ public class ExportInvoice {
      */
     public void setUserAddNo(String userAddNo) {
         this.userAddNo = userAddNo;
-    }
-
-    public String getUserEori() {
-        return this.userEori;
-    }
-
-    public void setUserEori(String userEori) {
-        this.userEori = userEori;
     }
 
     public long getInvoiceLineNumber() {

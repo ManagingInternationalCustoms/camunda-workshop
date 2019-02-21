@@ -30,7 +30,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public List<String> findPositionIds(String invoiceId) {
         return
-                Optional.of(entityManager.find(ExportInvoice.class, Long.valueOf(invoiceId)))
+                Optional.ofNullable(entityManager.find(ExportInvoice.class, Long.valueOf(invoiceId)))
                         .map(ExportInvoice::getPositions)
                         .map(List::stream).orElseGet(Stream::empty)
                         .map(ExportPosition::getSid)
