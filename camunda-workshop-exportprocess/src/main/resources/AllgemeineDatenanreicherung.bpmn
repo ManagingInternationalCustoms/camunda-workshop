@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="Definitions_1l8usnj" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.4">
+  <bpmn:collaboration id="Collaboration_1ip64sa">
+    <bpmn:participant id="Participant_13zd80x" name="Allgemeine Datenanreicherung" processRef="generalDataSupplementation" />
+  </bpmn:collaboration>
+  <bpmn:process id="generalDataSupplementation" name="Allgemeine Datenanreicherung" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_1m28kjn</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1m28kjn" sourceRef="StartEvent_1" targetRef="EndEvent_1s6ywck" />
+    <bpmn:endEvent id="EndEvent_1s6ywck">
+      <bpmn:incoming>SequenceFlow_1m28kjn</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1ip64sa">
+      <bpmndi:BPMNShape id="Participant_13zd80x_di" bpmnElement="Participant_13zd80x">
+        <dc:Bounds x="123" y="82" width="600" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="197" y="184" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1s6ywck_di" bpmnElement="EndEvent_1s6ywck">
+        <dc:Bounds x="637" y="184" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1m28kjn_di" bpmnElement="SequenceFlow_1m28kjn">
+        <di:waypoint x="233" y="202" />
+        <di:waypoint x="637" y="202" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
