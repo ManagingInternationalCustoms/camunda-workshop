@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="Definitions_0b6th4b" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.3">
+  <bpmn:collaboration id="Collaboration_097w8zj">
+    <bpmn:participant id="Participant_SupplementKunde2" name="Supplement Kunde 2" processRef="Process_SupplementKunde2" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_SupplementKunde2" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_Kunde2">
+      <bpmn:outgoing>SequenceFlow_0awkhw0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0awkhw0" sourceRef="StartEvent_Kunde2" targetRef="EndEvent_Kunde2" />
+    <bpmn:endEvent id="EndEvent_Kunde2">
+      <bpmn:incoming>SequenceFlow_0awkhw0</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_097w8zj">
+      <bpmndi:BPMNShape id="Participant_01o6046_di" bpmnElement="Participant_SupplementKunde2">
+        <dc:Bounds x="123" y="82" width="600" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_Kunde2">
+        <dc:Bounds x="192" y="184" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1wq1kev_di" bpmnElement="EndEvent_Kunde2">
+        <dc:Bounds x="447" y="184" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0awkhw0_di" bpmnElement="SequenceFlow_0awkhw0">
+        <di:waypoint x="228" y="202" />
+        <di:waypoint x="447" y="202" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
