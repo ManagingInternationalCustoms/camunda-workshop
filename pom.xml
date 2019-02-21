@@ -34,6 +34,11 @@
                 <updatePolicy>always</updatePolicy>
             </releases>
         </repository>
+        <repository>
+            <id>central</id>
+            <name>artifactory.mic.co.at-releases</name>
+            <url>http://artifactory.mic.co.at:8081/artifactory/build-libs</url>
+        </repository>
     </repositories>
 
     <dependencyManagement>
