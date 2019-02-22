@@ -23,7 +23,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Inject
-    public InvoiceServiceImpl(EntityManager entityManager) {
+    public InvoiceServiceImpl(@Database EntityManager entityManager) {
         super();
         this.entityManager = entityManager;
     }
