@@ -108,6 +108,9 @@
       <bpmn:incoming>SequenceFlow_1vyy4o0</bpmn:incoming>
       <bpmn:linkEventDefinition name="repeatPreparation" />
     </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1m8w3qy" name="yes" sourceRef="ExclusiveGateway_EmergencyCheck" targetRef="Task_Print">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${not systemOnline}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:userTask id="Task_Print" name="Ausdruck anfordern">
       <bpmn:incoming>SequenceFlow_1m8w3qy</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0q1vpxm</bpmn:outgoing>
@@ -137,6 +140,7 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
+          <camunda:formField id="systemOnline" label="Authority system online" type="boolean" defaultValue="true" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_0t7ilzz</bpmn:outgoing>
@@ -167,7 +171,7 @@
       <bpmn:outgoing>SequenceFlow_1nwq3km</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1d8qjgl</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sendTask id="Task_0pm64od" name="Deklarationsübertragung starten" camunda:expression="${true}">
+    <bpmn:sendTask id="Task_0pm64od" name="Deklarationsübertragung starten" camunda:delegateExpression="${startDeclarationDelegate}">
       <bpmn:incoming>SequenceFlow_1uzmrmx</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_034ik6j</bpmn:outgoing>
     </bpmn:sendTask>
@@ -195,9 +199,6 @@
     <bpmn:sequenceFlow id="SequenceFlow_1j2q5pm" sourceRef="BoundaryEvent_1ngmyz3" targetRef="ExclusiveGateway_16dr3tq" />
     <bpmn:sequenceFlow id="SequenceFlow_0uaz5vm" sourceRef="Task_1kle1vr" targetRef="EndEvent_EndedByPrint" />
     <bpmn:sequenceFlow id="SequenceFlow_0q1vpxm" sourceRef="Task_Print" targetRef="Task_1kle1vr" />
-    <bpmn:sequenceFlow id="SequenceFlow_1m8w3qy" name="yes" sourceRef="ExclusiveGateway_EmergencyCheck" targetRef="Task_Print">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${healthChecker.emergency}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1vyy4o0" sourceRef="Task_1dped0o" targetRef="IntermediateThrowEvent_09lzem8" />
     <bpmn:sequenceFlow id="SequenceFlow_0tbhw37" sourceRef="StartEvent_19l5mpl" targetRef="ExclusiveGateway_07rtyvx" />
     <bpmn:sequenceFlow id="SequenceFlow_07d3mpy" sourceRef="Task_12x3buc" targetRef="EndEvent_108nxc0" />

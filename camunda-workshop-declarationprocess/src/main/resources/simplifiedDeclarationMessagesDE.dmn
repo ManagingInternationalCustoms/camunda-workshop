@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_11gehnl" name="DRD" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="SimplifiedDeclaration_DE_Id" name="SimplifiedDeclaration DE">
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Response status message from Customs" camunda:inputVariable="responseStatus">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Release status received" name="releaseStatus" typeRef="boolean" />
+      <output id="OutputClause_0dc8koz" label="Error status from Customs" name="customsError" typeRef="boolean" />
+      <output id="OutputClause_18uirvs" label="Send message back to ERP" name="additionalInformation" typeRef="boolean" />
+      <output id="OutputClause_1fc4oq0" label="EAD in response message" name="eadIncluded" typeRef="boolean" />
+      <rule id="DecisionRule_1m9ti00">
+        <inputEntry id="UnaryTests_0vfq61x">
+          <text>"E_ERR_NCK"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vtxnr5">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1bid6eu">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1bnaw3l">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1f977dv">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1213lyj">
+        <inputEntry id="UnaryTests_0qnczhl">
+          <text>"E_EXP_STA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0rlw7rr">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0l62r7a">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0mau341">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1lm80ma">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19745ar">
+        <description>EAD is sent in separate Worflow step</description>
+        <inputEntry id="UnaryTests_0tsr8ek">
+          <text>"E_EXP_REL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0eu8fzr">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1em09le">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1p3mp0p">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0vexoqs">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

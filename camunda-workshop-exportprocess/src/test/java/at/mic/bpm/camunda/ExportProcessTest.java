@@ -2,6 +2,7 @@ package at.mic.bpm.camunda;
 
 import at.mic.bpm.camunda.delegate.DetermineSupplementProcessDelegate;
 import at.mic.bpm.camunda.delegate.ExportLogicDelegate;
+import at.mic.bpm.camunda.delegate.StartDeclarationDelegate;
 import at.mic.bpm.camunda.service.ExportProcessVariables;
 import at.mic.cust.export.create.ExportService;
 import at.mic.cust.export.create.InvoiceService;
@@ -58,7 +59,10 @@ public class ExportProcessTest {
     private ExportService exportService;
 
     @Mock
-    HealthChecker healthChecker;
+    CamundaMessageRestSender camundaMessageRestSender;
+
+//    @Mock
+//    HealthChecker healthChecker;
 
     @Before
     public void setup() {
@@ -66,10 +70,11 @@ public class ExportProcessTest {
         MockitoAnnotations.initMocks(this);
 
         Mocks.register("exportLogicDelegate", new ExportLogicDelegate(invoiceService));
-        Mocks.register("healthChecker", healthChecker);
+        Mocks.register("startDeclarationDelegate", new StartDeclarationDelegate(camundaMessageRestSender));
+//        Mocks.register("healthChecker", healthChecker);
         Mocks.register("determineSupplementProcessDelegate", new DetermineSupplementProcessDelegate(exportService));
 
-        when(healthChecker.isEmergency()).thenReturn(false);
+//        when(healthChecker.isEmergency()).thenReturn(false);
         when(exportService.determineSupplementProcess(anyString(), anyString())).thenReturn("Process_dummy");
     }
 
@@ -86,7 +91,8 @@ public class ExportProcessTest {
                         "123",
                         Variables.putValue("invoiceId", "456")
                                  .putValue(ExportProcessVariables.COMPANY, "DC")
-                                 .putValue(ExportProcessVariables.PLANT, "23"));
+                                 .putValue(ExportProcessVariables.PLANT, "23")
+                                 .putValue("invoiceId", "456").putValue("systemOnline", true));
 
 
         assertThat(processInstance).isStarted();
@@ -116,11 +122,12 @@ public class ExportProcessTest {
     @Test
     public void testEmergencyActive() {
 
-        when(healthChecker.isEmergency()).thenReturn(true);
+//        when(healthChecker.isEmergency()).thenReturn(true);
 
         ProcessInstance processInstance = runtimeService().createProcessInstanceByKey("export_completeDeclaration")
                                                           .businessKey("123")
-                                                          .startBeforeActivity("ExclusiveGateway_EmergencyCheck")
+                                                          .setVariable("systemOnline", false)
+                .startBeforeActivity("ExclusiveGateway_EmergencyCheck")
                                                           .execute();
 
         assertThat(processInstance).isWaitingAt("Task_Print");
