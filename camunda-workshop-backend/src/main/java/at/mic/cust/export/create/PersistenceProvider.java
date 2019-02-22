@@ -16,6 +16,7 @@ public class PersistenceProvider {
 
     @PersistenceContext(unitName = "at.mic.cust.export.PU")
     @Produces
+    @Database
     private EntityManager entityManager;
 
 }
